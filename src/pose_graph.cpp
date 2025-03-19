@@ -371,7 +371,7 @@ void PoseGraph::addKeyFrame(KeyFrame* cur_kf, bool flag_detect_loop)
                             
                                 //cout<<"traj_file: "<<traj_file.c_str()<<endl;
                                 outfile.open(traj_file.c_str(),ios::app);
-                                outfile<<cur_kf->index<<" "<<cur_kf->loop_index<<" "<<direction<<" "<<max_inlier_size<<std::endl;
+                                outfile<<cur_kf->index<<" "<<cur_kf->loop_index<<" "<<direction<<" "<<max_inlier_size<<" "<<flow_set[0]<<std::endl;
                                 outfile.close();
                                 // waitKey(0);
                         }
@@ -386,7 +386,7 @@ void PoseGraph::addKeyFrame(KeyFrame* cur_kf, bool flag_detect_loop)
                         // pub_goal_point.publish(current_goal_stamped); // 循环发布目标点
                         // exit(0);
                     }
-                    if(abs(global_loop_index-map_size_)<2)
+                    if(abs(global_loop_index-map_size_)<10)
                     {
                         current_goal_stamped.point.x = 0.0;
                         current_goal_stamped.point.y = 0.0;

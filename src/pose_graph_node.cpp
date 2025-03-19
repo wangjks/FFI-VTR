@@ -181,7 +181,11 @@ void image_callback(const sensor_msgs::ImageConstPtr &image_msg)
                     
                 }else{      
                     // std::cout<<"total_frame_: "<<total_frame_<<std::endl;
-                    if(total_frame_%30==0)
+                    int step = 5;
+                    if(LOAD_PREVIOUS_POSE_GRAPH)
+                        step = 40;
+
+                    if(total_frame_%step==0)
                     {
                             cout<<"detectAndCompute Xfeat"<<endl;
                             xfeat_.detectAndCompute(ptr0->image, mkpts0_raw_, feats0_raw_, sc0_raw_);
